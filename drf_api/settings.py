@@ -21,6 +21,12 @@ CLOUDINARY_STORAGE = {
 }
 MEDIA_URL = "/media/"
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+CLOUDINARY = {
+        'cloud_name': 'darmodjdz',  
+        'api_key': '256215175213695',  
+        'api_secret': 'ifudcXy8YxvTSmjfYW6LCO6cGhQ',
+        'api_proxy': 'http://proxy.server:3128'
+    }
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,7 +43,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+CSRF_TRUSTED_ORIGINS = ['https://8000-stephaniecr-drfapisimpl-8so6i0iegt3.ws-eu87.gitpod.io']
+# CORS_ORIGIN_ALLOW_ALL = True
 # Application definition
 
 INSTALLED_APPS = [
