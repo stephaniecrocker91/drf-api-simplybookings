@@ -76,10 +76,18 @@ Every time a profile is created, a User is created.
 What functionality to we want?
 * List all profiles
 * Option to view data in JSON 
-* 
 
-Profile List Views:
-* get method: creates profile serializer instance, and response data returned from our serializer displaying Profile.objects.all()
+<img src="assets/profiletable.png" width="500px">
+
+
+Profile Views:
+* Profile List GET method: Returned all the listed profiles, serialized then, and then sent serialized data in the response.
+* POST creation of profile: handles by signals.
+* Profile Detail GET method: fetch profile by id, serialize Profile model instance and return serialized data in the response. HTTP 404 not found is handled when getting object.
+* Profile Detail PUT method: fetch profile by id, call serializer woth profile and request data, if data is valid save and return instance, and if data is invalid return 400 ERROR
+
+* DELETE : not implimented
+
 
 
 * * *
@@ -105,6 +113,15 @@ owner= serializers.ReadOnlyField(
 
 
 * * *
+
+## IN BROWSER LOGIN/LOGOUT:
+
+* * *
+
+* Made possible to log in and ot of our API in browser interface
+* Written is_owner or ReadOnly custom permissions; so only profile owner can edit.
+
+
 
 
 ## TESTING:
