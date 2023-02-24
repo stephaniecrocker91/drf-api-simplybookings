@@ -48,7 +48,6 @@ I decided to use Django REST Framework as I can eaisly make use of its serialize
 
 
 
-
 * * * 
 
 
@@ -63,7 +62,50 @@ Profile Model Table:
 
 <img src="assets/profiletable.png" width="500px">
 
+
+USING DJANGO SIGNALS:
+Every time a profile is created, a User is created. 
+
 * * *
+
+## VIEWS:
+
+* * *
+# PROFILE APP:
+
+What functionality to we want?
+* List all profiles
+* Option to view data in JSON 
+* 
+
+Profile List Views:
+* get method: creates profile serializer instance, and response data returned from our serializer displaying Profile.objects.all()
+
+
+* * *
+
+## SERIALIZERS:
+
+* * *
+
+Will handle validation of our data, and handle all the conversions between our data types. 
+
+# PROFILE SERIALIZER CLASS:
+
+* Owner => ReadOnlyField
+By default the owner field will always returm the users ID number.
+For readibility, we override this by retrieving the users username instead.
+
+owner= serializers.ReadOnlyField(
+    source= 'owner.username
+)
+
+
+* Meta class model=Profile
+
+
+* * *
+
 
 ## TESTING:
 
