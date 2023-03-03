@@ -14,5 +14,3 @@ class Service(models.Model):
 
     def __str__(self):
         return f"Service: {self.service}"
-
-
