@@ -22,4 +22,6 @@ class ProfileSerializer(serializers.ModelSerializer):
             'image',
             'content',
             'is_owner',
+            'is_admin',
+            'is_superadmin'
             ]

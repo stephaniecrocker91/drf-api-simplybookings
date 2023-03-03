@@ -15,6 +15,7 @@ class ServiceList(APIView):
 class ServiceDetail(APIView):
     serializer_class = ServiceSerializer
     permission_classes = [IsAdminOrReadOnly]
+    
     def get_object(self, pk):
         try:
             service = Service.objects.get(pk=pk)
