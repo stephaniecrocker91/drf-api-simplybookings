@@ -1,4 +1,5 @@
 from django.http import Http404
+from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Service
@@ -11,6 +12,7 @@ class ServiceList(APIView):
         return Response(serializer.data)
 
 class ServiceDetail(APIView):
+    serializer_class = ServiceSerializer
     def get_object(self, pk):
         try:
             service = Service.objects.get(pk=pk)
@@ -22,3 +24,11 @@ class ServiceDetail(APIView):
         service = self.get_object(pk)
         serializer = ServiceSerializer(service)
         return Response(serializer.data)
+
+    def put(self, request, pk):
+        service = self.get_object(pk)
+        serializer = ServiceSerializer(service, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
