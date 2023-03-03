@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Service
 from .serializers import ServiceSerializer
+from drf_api.permissions import IsAdminOrReadOnly
 
 class ServiceList(APIView):
     def get(self, request):
@@ -13,9 +14,11 @@ class ServiceList(APIView):
 
 class ServiceDetail(APIView):
     serializer_class = ServiceSerializer
+    permission_classes = [IsAdminOrReadOnly]
     def get_object(self, pk):
         try:
             service = Service.objects.get(pk=pk)
+            self.check_object_permissions(self.request, service)
             return service
         except Service.DoesNotExist:
             raise Http404
