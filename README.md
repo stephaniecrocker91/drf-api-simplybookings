@@ -128,17 +128,7 @@ owner= serializers.ReadOnlyField(
 
 * * *
 
-I extensively tested manually to ensure that the API was working as intended for my projects purpose. For example...
 
-* Manually verified each url path created to confirm they work and open without error.
-* From my api, when searching for a post/profile that exist (using our posts/id or profile/id), the data is retrieved. 
-*  When attempting to search for a post/profile that does not... "detail: not found." and we get a 404 not found.
-* Verified that the CRUD functionality is available in each app: User, Post, Profile, Comments, Followers, Likes, Bookmarks.
-* Creating a new item and checking new item URL path.
-* Checked that editing a post works.
-* Deleting the item works.
-* Ensured search feature returns results.
-* When logging into my superuser  administrator in my back-end deployed verison of the api: I can confirm all data entered from the front end is displaying!
 
 * * *
 
@@ -183,9 +173,6 @@ PYTHON
 
 * * *
 
-* Initially intalled django 4.1
-pip3 install 'django<4'
 
-Django 3.2 is the LTS (Long Term Support) version of Django and is therefore preferable to use over the newest Django 4
 
 

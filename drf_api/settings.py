@@ -43,7 +43,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-stephaniecr-drfapisimpl-8so6i0iegt3.ws-eu87.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://8000-stephaniecr-drfapisimpl-8so6i0iegt3.ws-eu89.gitpod.io']
 # CORS_ORIGIN_ALLOW_ALL = True
 # Application definition
 
@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'profiles',
+    'service',
 ]
 
 MIDDLEWARE = [
