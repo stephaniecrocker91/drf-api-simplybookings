@@ -53,7 +53,10 @@ Login and Log out views of our API in-browser interface. These come with our RES
 * * * 
 
 
-## PROFILE APP:
+
+
+
+# PROFILE APP:
 
 * * *
 
@@ -65,7 +68,7 @@ What functionality to we want?
 
 * * *
 
-# MODEL:
+## MODEL:
 
 We have made use of the standard Django user Model and referenced it in our models.
 
@@ -79,10 +82,18 @@ Every time a profile is created, a User is created.
 
 * * *
 
-# VIEWS:
+## VIEWS:
 
 * * *
-* get method: creates profile serializer instance, and response data returned from our serializer displaying Profile.objects.all()
+
+* ProfileList: 
+    * get request listing all profiles.
+
+* ProfileDetail
+    * _get_object_: View handling request made for profile that doesn't exist and checks permissions.
+    * _get method_: View profile details by fetching using pk. Calls the get_object method, calls profile serializer, and returns serializer data.
+    * _put method_: Calls _get_object_ method by pk, calls serializer with profile and update data. If serializer vaid, save profile instance to database and return data in our response. If invalid, return Response with error.(400_BAD_REQUEST)
+
 
 ## SERIALIZERS:
 
@@ -102,7 +113,7 @@ For readibility, we override this by retrieving the users username instead.
 
 * * *
 
-# CUSTOM PERMISSIONS:
+## CUSTOM PERMISSIONS:
 
 * * *
 
@@ -112,25 +123,76 @@ For readibility, we override this by retrieving the users username instead.
 * * *
 
 
-## TESTING:
+
+
+
+# SERVICES APP:
 
 * * *
 
-I extensively tested manually to ensure that the API was working as intended for my projects purpose. For example...
+What functionality to we want?
+* List all services categories types available. For example: pilates, yoga, meditation, etc.
+* Option to view data in JSON 
+* Read only functionality for regular users. Full CRUD functinality for admin!
 
-* Manually verified each url path created to confirm they work and open without error.
-* From my api, when searching for a post/profile that exist (using our posts/id or profile/id), the data is retrieved. 
-*  When attempting to search for a post/profile that does not... "detail: not found." and we get a 404 not found.
-* Verified that the CRUD functionality is available in each app: User, Post, Profile, Comments, Followers, Likes, Bookmarks.
-* Creating a new item and checking new item URL path.
-* Checked that editing a post works.
-* Deleting the item works.
-* Ensured search feature returns results.
-* When logging into my superuser  administrator in my back-end deployed verison of the api: I can confirm all data entered from the front end is displaying!
 
 * * *
 
-## PEP8 testing:
+
+## MODEL:
+
+
+Services Model Table:
+ser
+<img src="assets/servicetable.png" width="500px">
+
+
+* * *
+
+## VIEWS:
+
+* * *
+
+* get method: creates profile serializer instance, and response data returned from our serializer displaying Profile.objects.all()
+
+
+## SERIALIZERS:
+
+* * *
+
+Serializers Will handle validation of our data, and handle all the conversions between our data types. 
+
+
+* Owner => ReadOnlyField
+By default the owner field will always returm the users ID number.
+For readibility, we override this by retrieving the users username instead.
+* is_owner => can easily render profile-owner-specific UI elements (ex: edit and delete)
+
+
+* Meta class model=Profile
+
+
+* * *
+
+## CUSTOM PERMISSIONS:
+
+* * *
+
+* Allow READ-ONLY access to every user
+* Allow update and delete only to owner of resource.
+
+* * *
+
+
+# TESTING:
+
+* * *
+
+
+
+* * *
+
+# PEP8 testing:
 
 * * *
 
@@ -140,7 +202,7 @@ I extensively tested manually to ensure that the API was working as intended for
  * * *
 
 
-## TECHNOLOGIES USED:
+# TECHNOLOGIES USED:
 
 * * *
 
