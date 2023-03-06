@@ -11,8 +11,8 @@ class Lesson(models.Model):
     )
     teacher = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
-    starts_at = models.DateTimeField(default=timezone.now)
-    ends_at = models.DateTimeField(default=timezone.now)
+    starts_at = models.TimeField()
+    ends_at = models.TimeField()
     created_at = models.DateTimeField(default=timezone.now)
 
     class Meta:
