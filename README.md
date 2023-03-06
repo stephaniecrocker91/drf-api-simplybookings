@@ -44,17 +44,28 @@ Receive responses such as 2xx OK, 4xx ERROR, 5xx SERVER ERROR.
 
 * * *
 
-I decided to use Django REST Framework as I can eaisly make use of its serializers, APIVIew & generics, permissions and authentications. It cans erve both mobile and web apps.
+I decided to use Django REST Framework as I can easily make use of its serializers, APIVIew & generics, permissions and authentications. It can serve both mobile and web apps.
 
 
+
+Login and Log out views of our API in-browser interface. These come with our REST Framework.
 
 * * * 
 
 
-## DATABASE:
+## PROFILE APP:
 
 * * *
-# PROFILE APP & MODELS:
+
+What functionality to we want?
+* List all profiles
+* Option to view data in JSON 
+* 
+
+
+* * *
+
+# MODEL:
 
 We have made use of the standard Django user Model and referenced it in our models.
 
@@ -68,45 +79,22 @@ Every time a profile is created, a User is created.
 
 * * *
 
-## VIEWS:
+# VIEWS:
 
 * * *
-# PROFILE APP:
-
-What functionality to we want?
-* List all profiles
-* Option to view data in JSON 
-
-<img src="assets/profiletable.png" width="500px">
-
-
-Profile Views:
-* Profile List GET method: Returned all the listed profiles, serialized then, and then sent serialized data in the response.
-* POST creation of profile: handles by signals.
-* Profile Detail GET method: fetch profile by id, serialize Profile model instance and return serialized data in the response. HTTP 404 not found is handled when getting object.
-* Profile Detail PUT method: fetch profile by id, call serializer woth profile and request data, if data is valid save and return instance, and if data is invalid return 400 ERROR
-
-* DELETE : not implimented
-
-
-
-* * *
+* get method: creates profile serializer instance, and response data returned from our serializer displaying Profile.objects.all()
 
 ## SERIALIZERS:
 
 * * *
 
-Will handle validation of our data, and handle all the conversions between our data types. 
+Serializers Will handle validation of our data, and handle all the conversions between our data types. 
 
-# PROFILE SERIALIZER CLASS:
 
 * Owner => ReadOnlyField
 By default the owner field will always returm the users ID number.
 For readibility, we override this by retrieving the users username instead.
-
-owner= serializers.ReadOnlyField(
-    source= 'owner.username
-)
+* is_owner => can easily render profile-owner-specific UI elements (ex: edit and delete)
 
 
 * Meta class model=Profile
@@ -114,21 +102,31 @@ owner= serializers.ReadOnlyField(
 
 * * *
 
-## IN BROWSER LOGIN/LOGOUT:
+# CUSTOM PERMISSIONS:
 
 * * *
 
-* Made possible to log in and ot of our API in browser interface
-* Written is_owner or ReadOnly custom permissions; so only profile owner can edit.
+* Allow READ-ONLY access to every user
+* Allow update and delete only to owner of resource.
 
-
+* * *
 
 
 ## TESTING:
 
 * * *
 
+I extensively tested manually to ensure that the API was working as intended for my projects purpose. For example...
 
+* Manually verified each url path created to confirm they work and open without error.
+* From my api, when searching for a post/profile that exist (using our posts/id or profile/id), the data is retrieved. 
+*  When attempting to search for a post/profile that does not... "detail: not found." and we get a 404 not found.
+* Verified that the CRUD functionality is available in each app: User, Post, Profile, Comments, Followers, Likes, Bookmarks.
+* Creating a new item and checking new item URL path.
+* Checked that editing a post works.
+* Deleting the item works.
+* Ensured search feature returns results.
+* When logging into my superuser  administrator in my back-end deployed verison of the api: I can confirm all data entered from the front end is displaying!
 
 * * *
 
@@ -173,6 +171,10 @@ PYTHON
 
 * * *
 
+* Initially intalled django 4.1
+pip3 install 'django<4'
+
+Django 3.2 is the LTS (Long Term Support) version of Django and is therefore preferable to use over the newest Django 4
 
 
 
