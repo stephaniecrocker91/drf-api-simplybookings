@@ -153,7 +153,15 @@ ser
 
 * * *
 
-* get method: creates profile serializer instance, and response data returned from our serializer displaying Profile.objects.all()
+Almost identical to profile views. With exception of permissions.
+
+* ServiceList: 
+    * get request listing all services.
+
+* ProfileDetail
+    * _get_object_: View handling request made for service that doesn't exist and checks permissions.
+    * _get method_: View service details by fetching using pk. Calls the get_object method, calls service serializer, and returns serializer data.
+    * _put method_: Calls _get_object_ method by pk, calls serializer with service and update data. If serializer vaid, save service instance to database and return data in our response. If invalid, return Response with error.(400_BAD_REQUEST)
 
 
 ## SERIALIZERS:
@@ -163,13 +171,7 @@ ser
 Serializers Will handle validation of our data, and handle all the conversions between our data types. 
 
 
-* Owner => ReadOnlyField
-By default the owner field will always returm the users ID number.
-For readibility, we override this by retrieving the users username instead.
-* is_owner => can easily render profile-owner-specific UI elements (ex: edit and delete)
-
-
-* Meta class model=Profile
+* Meta class model=Service
 
 
 * * *
@@ -179,7 +181,7 @@ For readibility, we override this by retrieving the users username instead.
 * * *
 
 * Allow READ-ONLY access to every user
-* Allow update and delete only to owner of resource.
+* Allow update and delete only to profiles with field user.profile.is_admin == True.
 
 * * *
 
