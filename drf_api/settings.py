@@ -41,10 +41,10 @@ SECRET_KEY = 'django-insecure-9i+nil-$lz$=nn+_2)a1kpjw(8m4qa0=x#=69rwl0bc(7!1go@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost',]
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-stephaniecr-drfapisimpl-8so6i0iegt3.ws-eu89.gitpod.io']
-# CORS_ORIGIN_ALLOW_ALL = True
+CSRF_TRUSTED_ORIGINS = ['https://8000-stephaniecr-drfapisimpl-8so6i0iegt3.ws-eu89b.gitpod.io/']
+##CORS_ORIGIN_ALLOW_ALL = True
 # Application definition
 
 INSTALLED_APPS = [
